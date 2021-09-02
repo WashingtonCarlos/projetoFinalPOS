@@ -53,7 +53,7 @@
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0 navbar-right" action="{{route('motorista.search')}}" method="POST">
-                     {{csrf_field()}}
+                    {{csrf_field()}}
                     <input class="form-control mr-sm-2" type="search" placeholder="Pesquisa" aria-label="Search" name="search2">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">pesquisa</button>
                 </form>
