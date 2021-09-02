@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault();
 
       let dados = {
-        //usuario_id: $('#id').val(),
+        usuario_id: $('#usuario_id').val(),
         title: $('#title').val(),
         description: $('#description').val(),
         nome_da_escola: $('#nome_da_escola').val(),
