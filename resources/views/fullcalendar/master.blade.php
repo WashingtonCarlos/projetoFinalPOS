@@ -73,7 +73,7 @@
           <div class="alert alert-danger" style="display:none"></div>
           <form method="" action="" enctype="multipart/form-data">
           <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-          <input type="hidden" name="usuario_id" id="usuario_id" value="{{auth()->user()->id}}">
+          <input type="hidden" name="idUsu" id="id" value="{{auth()->user()->id}}">
             <div class="form-group">
               <label for="">Titulo</label>
               <input type="text" class="form-control" name="title" id="title" aria-describedby="helpId" required autofocus>
