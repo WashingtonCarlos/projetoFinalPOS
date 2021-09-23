@@ -53,21 +53,22 @@ Route::get('/busca/{id}',[UserController::class,'mostrar'])->name('busca')->midd
 Route::get('/deletar/{id}',[UserController::class,'deletar'])->middleware('auth');
 Route::post('/registrar',[LoginController::class,'registro']);
 //Tela do Calendario 
-Route::get('/usuario',[FullCalendarController::class,'index'])->name('usuario');
+Route::get('/usuario',[FullCalendarController::class,'index'])->name('usuario')->middleware('auth');
 //Eventos do calendario
-Route::get('/load-events',[EventController::class,'loadEvents']);
-Route::post('/load-update/{id}',[EventController::class,'update']);
-Route::post('usuario/armazena',[EventController::class,'store']);
-Route::delete('/excluir/{id}',[EventController::class,'deletar']);
+Route::get('/load-events',[EventController::class,'loadEvents'])->middleware('auth');
+Route::post('/load-update/{id}',[EventController::class,'update'])->middleware('auth');
+Route::post('usuario/armazena',[EventController::class,'store'])->middleware('auth');
+Route::delete('/excluir/{id}',[EventController::class,'deletar'])->middleware('auth');
 //sair do sistema
 Route::get('/logout',[LoginController::class,'logout']);
 //verificar se o CPF já exite no banco de dados
 Route::post('/verify/cpf', [UserController::class,'perfil']);
-
-
-
-Route::any('funcionarios/search',[UserController::class,'search'])->name('funcionarios.search');
-Route::any('motorista/search',[UserController::class,'search2'])->name('motorista.search');
+//Rotas de busca
+Route::any('funcionarios/search',[UserController::class,'search'])->name('funcionarios.search')->middleware('auth');
+Route::any('motorista/search',[UserController::class,'search2'])->name('motorista.search')->middleware('auth');
+//gerar arquivo PDF
+Route::get('/gerarPDF/{id}',[EventController::class,'pdfCreate'])->middleware('auth');
+Route::get('/gerarPDF1',[EventController::class,'pdfCreate1'])->middleware('auth');
 
 //Auth::routes();
 

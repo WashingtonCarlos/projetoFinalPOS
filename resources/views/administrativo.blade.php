@@ -42,6 +42,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('cadMoto')}}">Cadastro de motorista</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('/gerarPDF1')}}">veiculos locados</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
                             {{auth()->user()->nome}}

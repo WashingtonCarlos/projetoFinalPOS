@@ -2,9 +2,10 @@
 
 namespace Frota\Http\Controllers;
 
-use Facade\FlareClient\Http\Response;
+use Barryvdh\DomPDF\Facade as PDF;
 use Frota\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use SebastianBergmann\Environment\Console;
 
@@ -45,5 +46,19 @@ class EventController extends Controller
 
         $evento = Event::where('id',$id)->delete();
         return response()->json($evento);
+    }
+    //gerar arquivos PDF
+    public function pdfCreate($id){
+
+        $dados = DB::select('SELECT * FROM events WHERE id = ?',[$id]);
+        $pdf = PDF::loadView('pdf.aluguel', compact('dados'));
+        return $pdf->stream('aluguel.pdf', array("Attachment" => true));
+    }
+
+    public function pdfCreate1(){
+
+        $dados = Event::all();
+        $pdf = PDF::loadView('pdf.aluguel', compact('dados'));
+        return $pdf->stream('aluguel.pdf', array("Attachment" => true));
     }
 }

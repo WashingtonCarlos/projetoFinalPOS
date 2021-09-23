@@ -73,7 +73,7 @@
           <div class="alert alert-danger" style="display:none"></div>
           <form method="" action="" enctype="multipart/form-data">
           <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-          <input type="hidden" name="idUsu" id="id" value="{{auth()->user()->id}}">
+          <input type="hidden" name="id" id="id">
             <div class="form-group">
               <label for="">Titulo</label>
               <input type="text" class="form-control" name="title" id="title" aria-describedby="helpId" required autofocus>
@@ -123,6 +123,7 @@
           <button type="button" class="btn btn-warning" data-dismiss="modal" id="btnAlterar">Alterar</button>
           <button type="button" class="btn btn-danger" data-dismiss="modal" id="btnExcluir">Excluir</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-info" data-dismiss="modal" id="btnPDF">Gerar PDF</button>
         </div>
       </div>
     </div>

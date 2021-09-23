@@ -154,13 +154,13 @@ class UserController extends Controller
         }
         return redirect('/registrar');
     }
-
+    //busca pelo nome do usuario
     public function search(Request $request){
 
         $usuarios = $this->populacao->search($request->search);
         return view('administrativo')->with('usuarios', $usuarios);
     }
-
+    //busca pelo nome do motorista 
     public function search2(Request $request){
 
         $motorista = $this->conducao->search($request->search2);

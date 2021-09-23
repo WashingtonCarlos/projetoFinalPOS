@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     eventClick:function(info){
 
       var event = info.event;
-      console.log(event);
+      //console.log(event);
       //captura dos elementos do banco 
       $('#title').html(event.title);
       $('#description').html(event.description);
@@ -189,6 +189,29 @@ document.addEventListener('DOMContentLoaded', function() {
     $('#color').val('#3788D8');
 
   }
+
+  $('#btnPDF').click(function(e){
+    e.preventDefault();
+
+    let dados = {
+      id: $('#id').val(),
+      _token: $('#token').val()
+    };
+    $.ajax({
+      type: 'GET',
+      url: '/gerarPDF/'+ dados.id,
+      dataType: 'json',
+      data: dados,
+      success: function(url){
+        window.open("http://localhost:8000/gerarPDF/"+dados.id,"_blank");
+        calendar.refetchEvents();
+      },
+      error: function(error){
+        window.open("http://localhost:8000/gerarPDF/"+dados.id,"_blank");
+        calendar.refetchEvents();
+      }
+    });
+  });
 
 });
 
