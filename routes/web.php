@@ -67,8 +67,8 @@ Route::post('/verify/cpf', [UserController::class,'perfil']);
 Route::any('funcionarios/search',[UserController::class,'search'])->name('funcionarios.search')->middleware('auth');
 Route::any('motorista/search',[UserController::class,'search2'])->name('motorista.search')->middleware('auth');
 //gerar arquivo PDF
-Route::get('/gerarPDF/{id}',[EventController::class,'pdfCreate'])->middleware('auth');
-Route::get('/gerarPDF1',[EventController::class,'pdfCreate1'])->middleware('auth');
+Route::get('/gerarPDF/{id}',[EventController::class,'pdfCreate']);
+Route::get('/gerarPDF1',[EventController::class,'pdfCreate1']);
 
 //Auth::routes();
 
