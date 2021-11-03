@@ -107,6 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
           if (result.errors){
 
             alert("A um problema na atualização "+result.errors);
+            console.log(filtro);
             $.each(result.errors, function(key, value) {
 
               $('.alert-danger').show();
