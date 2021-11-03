@@ -11,9 +11,11 @@ use SebastianBergmann\Environment\Console;
 
 class EventController extends Controller
 {
-    public function loadEvents(){
+    
+    public function loadEvents($id){
         
-        $events = Event::all();
+        $events = DB::select('SELECT * FROM events WHERE usuario_id = ?', [$id]);
+        //dd($events);
         return response()->json($events);
     }
 
@@ -49,14 +51,14 @@ class EventController extends Controller
     }
     //gerar arquivos PDF
     public function pdfCreate($id){
-
+        //GERAR PDF DE FORMA INDIVIDUAL
         $dados = DB::select('SELECT * FROM events WHERE id = ?',[$id]);
         $pdf = PDF::loadView('pdf.aluguel', compact('dados'));
         return $pdf->stream('aluguel.pdf', array("Attachment" => true));
     }
 
     public function pdfCreate1(){
-
+        //GERAR PDF DE FORMA GERAL 
         $dados = Event::all();
         $pdf = PDF::loadView('pdf.aluguel', compact('dados'));
         return $pdf->stream('aluguel.pdf', array("Attachment" => true));

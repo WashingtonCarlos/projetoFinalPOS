@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
   let formulario = document.querySelector("form");
   
   var calendarEl = document.getElementById('calendar');
+  //filtra o id do usuario que faz o login
+  var filtro = $('#usuario_id').val();
   
   var calendar = new FullCalendar.Calendar(calendarEl, {
     
@@ -17,7 +19,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     editable: true,
 
-    events: "/load-events",
+    //eventos separado por usuarios logados 
+    events: { 
+      url: "/load-events/"+filtro,
+      type: 'GET',
+      error: function(){
+        alert ('Erro ao buscar o Calendario');
+      }
+    },
     //pega a data do calendario conforme o dia que clicar
     dateClick:function(info){
       formulario.reset();
@@ -76,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault();
 
       let dados = {
-        //usuario_id: $('#usuario_id').val(),
+        usuario_id: $('#usuario_id').val(),
         title: $('#title').val(),
         description: $('#description').val(),
         nome_da_escola: $('#nome_da_escola').val(),
@@ -117,6 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function recuperarDadosDoFormulario() {
 
     let dados = {
+      usuario_id: $('#usuario_id').val(),
       id: $('#id').val(),
       title: $('#title').val(),
       description: $('#description').val(),
@@ -132,6 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
     e.preventDefault();
   
     let dados = {
+      usuario_id: $('#usuario_id').val(),
       id: $('#id').val(),
       title: $('#title').val(),
       description: $('#description').val(),

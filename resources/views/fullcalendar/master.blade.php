@@ -45,6 +45,7 @@
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;{{auth()->user()->nome}}</a></li>
+        <input type="hidden" name="usuario_id" id="usuario_id" value="{{auth()->user()->id}}">
         <li><a href="{{url('/logout')}}"><span class="glyphicon glyphicon-log-in"></span>&nbsp; Sair</a></li>
         <li><a href="{{url('senha',[auth()->user()->id])}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp; Alterar senha</a></li>
       </ul>

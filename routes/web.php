@@ -55,7 +55,7 @@ Route::post('/registrar',[LoginController::class,'registro']);
 //Tela do Calendario 
 Route::get('/usuario',[FullCalendarController::class,'index'])->name('usuario')->middleware('auth');
 //Eventos do calendario
-Route::get('/load-events',[EventController::class,'loadEvents'])->middleware('auth');
+Route::get('/load-events/{id}',[EventController::class,'loadEvents'])->middleware('auth');
 Route::post('/load-update/{id}',[EventController::class,'update'])->middleware('auth');
 Route::post('usuario/armazena',[EventController::class,'store'])->middleware('auth');
 Route::delete('/excluir/{id}',[EventController::class,'deletar'])->middleware('auth');

@@ -19,9 +19,10 @@ class Event extends Model
         'color' => 'required',
         'description' => 'required',
         'nome_da_escola' => 'required',
+        'usuario_id' => 'required',
     ];
 
-    protected $fillable = ['title','start','end','color','description','nome_da_escola'];
+    protected $fillable = ['title','start','end','color','description','nome_da_escola','usuario_id'];
 
     public function usuario(){
         return $this->hasMany(Usuario::class);
