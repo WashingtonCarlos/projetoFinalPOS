@@ -158,12 +158,22 @@ document.addEventListener('DOMContentLoaded', function() {
         url: "/load-update/"+dados.id,
         dataType: 'json',
         data: dados,
-        success: function(msg) {
-          alert("Atualizado com sucesso: "+dados.nome_da_escola);
-          calendar.refetchEvents();
-        },
-        error: function(error) {
-          alert("A um problema na atualização "+error);
+        success: function(result) {
+  
+          if (result.errors){
+
+            alert("A um problema na atualização "+result.errors);
+            $.each(result.errors, function(key, value) {
+
+              $('.alert-danger').show();
+              $('.alert-danger').append('<li>' + value + '</li>');
+
+            });
+          } else{
+
+            alert("Armazenado com sucesso: "+dados.nome_da_escola);
+            calendar.refetchEvents();
+          }
         }
       });
   });
