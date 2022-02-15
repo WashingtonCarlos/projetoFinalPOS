@@ -164,7 +164,7 @@ return [
 
         LaravelLegends\PtBrValidator\ValidatorProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-
+        Laravel\Socialite\SocialiteServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -177,7 +177,7 @@ return [
         // Frota\Providers\BroadcastServiceProvider::class,
         Frota\Providers\EventServiceProvider::class,
         Frota\Providers\RouteServiceProvider::class,
-
+        
     ],
 
     /*
@@ -230,6 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 

@@ -16,6 +16,7 @@ class CreateUsuariosTable extends Migration
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
             $table->string('remember_token', 100)->nullable();
+            $table->string('fb_id')->nullable();
             $table->string('cep');
             $table->string('cidade');
             $table->string('email');
@@ -25,7 +26,7 @@ class CreateUsuariosTable extends Migration
             $table->string('nivel_de_acesso');
             $table->string('estado');
             $table->string('telefone');
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->timestamps();
         });
     }
