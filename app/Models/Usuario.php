@@ -31,7 +31,7 @@ class Usuario extends Model implements AuthenticatableContract
     ];
 
     public function eventos(){
-        return $this->belongsToMany(Event::class);
+        return $this->hasMany(Event::class, 'usuario_id','id');
     }
 
     public function search($search = null){

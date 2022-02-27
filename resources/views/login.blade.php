@@ -16,6 +16,12 @@
       <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> Lembrar de mim
+          <div class="flex items-center justify-end mt-4">
+                <a class="btn" href="{{ url('auth/facebook') }}"
+                    style="background: #3B5499; color: #ffffff; padding: 10px; width: 100%; text-align: center; display: block; border-radius:3px;">
+                    Login with Facebook
+                </a>
+            </div>
         </label>
       </div>
       <button class="btn btn-lg btn-success btn-block" type="submit">Login</button>

@@ -10,7 +10,7 @@ class Event extends Model
 {
     use HasFactory;
 
-    public $table = "events";
+    protected $table = "events";
 
     static $rules = [
         'title' => 'required',
@@ -25,7 +25,7 @@ class Event extends Model
     protected $fillable = ['title','start','end','color','description','nome_da_escola','usuario_id'];
 
     public function usuario(){
-        return $this->hasMany(Usuario::class);
+        return $this->belongsTo(Usuario::class, 'usuario_id', 'id');
     }
 
     public function motorista(){

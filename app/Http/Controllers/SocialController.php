@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
 
+
 class SocialController extends Controller
 {
     public function facebookRedirect()
@@ -21,21 +22,23 @@ class SocialController extends Controller
         try {
     
             $user = Socialite::driver('facebook')->user();
+            //dd($user);
             $isUser = Usuario::where('fb_id', $user->id)->first();
-     
+            //dd($isUser);
             if($isUser){
                 Auth::login($isUser);
-                return redirect('/usuarios');
+                return redirect()->route('usuario');
+                //$objeto = JSON.stringify();
+               //return redirect()->route('loginSocial',[$isUser->cpf,$isUser->password]);
             }else{
-                $createUser = Usuario::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'fb_id' => $user->id,
-                    'password' => encrypt('admin@123')
+               $createUser = array([
+                   'name' => $user->name,
+                   'email' => $user->email,
+                   'fb_id' => $user->id,
+                    //'password' => encrypt('admin@123')
                 ]);
-    
-                Auth::login($createUser);
-                return redirect('/dashboard');
+                //dd($createUser);
+                return view('ordinary.socialLogin')->with('social',$createUser);
             }
     
         } catch (Exception $exception) {

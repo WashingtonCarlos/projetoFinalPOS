@@ -27,8 +27,9 @@ class UserController extends Controller
     public function lista()
     {
 
-        $usuarios = DB::table('usuarios')->paginate(4);
-        return view('administrativo')->with('usuarios', $usuarios);
+        $usuarios = Usuario::all();
+        //dd($usuarios->items);
+        return view('administrativo',['usuarios' =>$usuarios]);
     }
 
     public function mostrar($id)

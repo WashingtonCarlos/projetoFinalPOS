@@ -17,7 +17,7 @@ class EventTableSeeder extends Seeder
         DB::table('events')->insert([
             [
                 'usuario_id' => 1,
-                'motorista_id' => 1,
+                //'motorista_id' => 1,
                 'title' => 'Reunião',
                 'start' => '2021-04-27 12:00:00',
                 'end' => '2021-04-27 14:00:00',
@@ -27,7 +27,7 @@ class EventTableSeeder extends Seeder
             ],
             [
                 'usuario_id' => 1,
-                'motorista_id' => 1,
+                //'motorista_id' => 1,
                 'title' => 'Aula dia 5',
                 'start' => '2021-04-28 12:00:00',
                 'end' => '2021-04-28 14:00:00',

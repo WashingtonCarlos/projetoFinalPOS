@@ -49,9 +49,48 @@ class LoginController extends Controller
 
         return redirect('/funcionarios');
     }
+
+    public function registroSocial(Request $request){
+        //dd($request);
+        $validation = Validator::make($request->all(),[
+            'cpf' => 'required|max:50|unique:usuarios',
+            'nome' => 'required|max:50',
+            'endereco' => 'required|max:50',
+            'telefone' => 'required|max:50',
+            'cidade' => 'required|max:50',
+            'estado' => 'required|max:50',
+            'email' => 'email|unique:usuarios',
+            'cep' => 'required|max:50',
+            'password' => 'required|min:6',
+            'nivel_de_acesso' => 'required|max:2' 
+            ]);
+
+        if($validation->fails()){
+            dd($validation);
+            return redirect('/cadastro')
+            ->withInput()
+            ->withErrors($validation);
+        }
+        
+        $user = new ModelsUsuario();
+        $user->fb_id = $request->fb_id;
+        $user->cpf = $request->cpf;
+        $user->nome = $request->nome;
+        $user->endereco = $request->endereco;
+        $user->cidade = $request->cidade;
+        $user->cep = $request->cep;
+        $user->telefone = $request->telefone;
+        $user->estado = $request->estado;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->nivel_de_acesso = $request->nivel_de_acesso;
+        $user->save();
+        
+        return redirect()->route('loginSocial',[$request]);
+    }
     // Login na tela principal do projeto 
     public function LoginUsuario(Request $request){
-        
+        //dd($request);
         $credenciais = $request->validate(
         [
             'cpf' => ['required'],
@@ -118,7 +157,7 @@ class LoginController extends Controller
         $user->categoria = $request->categoria;
         $user->save();
 
-        return redirect('/motorista');
+        return redirect('/funcionarios');
     }
 
     //sair do sessão 

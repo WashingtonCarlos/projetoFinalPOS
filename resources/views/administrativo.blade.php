@@ -87,14 +87,14 @@
                     @foreach ($usuarios as $us)
                     <tr>
                         <td>{{ $us->id }}</td>
-                        <td>{{ $us->nome }}</td>
-                        <td>{{ $us->cpf }}</td>
-                        <td>{{ $us->email }}</td>
-                        <td class="text-center">{{ $us->nivel_de_acesso }}</td>
+                        <td>{{ $us['nome'] }}</td>
+                        <td>{{ $us['cpf'] }}</td>
+                        <td>{{ $us['email'] }}</td>
+                        <td class="text-center">{{ $us['nivel_de_acesso'] }}</td>
 
                         <td>
                             <p data-placement='top' data-toggle='tooltip' title='Editar'>
-                                <a href="{{url('editar',[$us->id])}}">
+                                <a href="{{url('editar',[$us['id']])}}">
                                     <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target='#edit'>
                                         <span class="glyphicon glyphicon-pencil">
                                         </span>
@@ -104,7 +104,7 @@
                         </td>
                         <td>
                             <p data-placement="top" data-toggle='tooltip' title="Deletar">
-                                <a href="{{url('deletar',[$us->id])}}" onclick="return confirm('Voce realmente deseja deletar o usuario ?');"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete">
+                                <a href="{{url('deletar',[$us['id']])}}" onclick="return confirm('Voce realmente deseja deletar o usuario ?');"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete">
                                         <span class="glyphicon glyphicon-trash">
 
                                         </span>
@@ -113,7 +113,7 @@
                         </td>
                         <td>
                             <p data-placement="top" data-toggle="tooltip" title="Visualizar">
-                                <a href="{{url('busca',[$us->id])}}"><button class="btn btn-info btn-xs" data-title="Visualizar" data-toggle="modal" data-target="#visualizar">
+                                <a href="{{url('busca',[$us['id']])}}"><button class="btn btn-info btn-xs" data-title="Visualizar" data-toggle="modal" data-target="#visualizar">
                                         <span class="glyphicon glyphicon-eye-open">
 
                                         </span>
@@ -122,7 +122,7 @@
                         </td>
                         <td>
                             <p data-placement="top" data-toggle="tooltip" title="Atualizar Senha">
-                                <a href="{{url('senha',[$us->id])}}"><button class="btn btn-info btn-xs" data-title="Senha" data-toggle="modal" data-target="#senha">
+                                <a href="{{url('senha',[$us['id']])}}"><button class="btn btn-info btn-xs" data-title="Senha" data-toggle="modal" data-target="#senha">
                                         <span class="glyphicon glyphicon-refresh">
 
                                         </span>
@@ -130,10 +130,35 @@
                             </p>
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="9" class="agenda">
+                            LOCAÇÕES AGENDADAS
+                            <table class="loca" rules="rows">
+                                <thead>
+                                    <tr>
+                                        <th>codigo</th>
+                                        <th>dia e horario inicio</th>
+                                        <th>dia e horario final</th>
+                                        <th>nome da escola</th>
+                                    </tr>
+                                    <tbody>
+                                        
+                                        @foreach ($us->eventos as $evento)
+                                            <tr>
+                                                <td>{{$evento->id}}</td>
+                                                <td>{{\Carbon\Carbon::parse($evento->start)->format('d/m/Y HH:m')}}</td>
+                                                <td>{{\Carbon\Carbon::parse($evento->start)->format('d/m/Y H:m')}}</td>
+                                                <td>{{$evento->nome_da_escola}}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                            </table>
+                        </td>
+
+                    </tr>
                     @endforeach
                 </tbody>
             </table>
-            {!! $usuarios->links() !!}
         </div>
     </div>
 

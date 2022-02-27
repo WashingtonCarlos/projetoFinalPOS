@@ -32,7 +32,7 @@ Auth::routes();
 //Tela de Cadastro do Usuario 
  Route::get('/cadastro', function(){
      return view('cadastro');
- })->name('cad_usu')->middleware('auth');
+ })->name('cad_usu');
  //Tela de Alterar Senha 
  Route::get('/senha/{id}',[UserController::class,'mostrarSenha'])->name('senha')->middleware('auth');
  //Tela de Cadastro do Motorista
@@ -69,6 +69,11 @@ Route::any('motorista/search',[UserController::class,'search2'])->name('motorist
 //gerar arquivo PDF
 Route::get('/gerarPDF/{id}',[EventController::class,'pdfCreate']);
 Route::get('/gerarPDF1',[EventController::class,'pdfCreate1']);
+//login social com facebook
+Route::get('auth/facebook', [SocialController::class, 'facebookRedirect']);
+Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook']);
+Route::get('/acessoSocial',[LoginController::class,'LoginUsuario'])->name('loginSocial');
+Route::post('/registrarSocial',[LoginController::class,'registroSocial'])->name('cadastrasocial');
 
 //Auth::routes();
 
