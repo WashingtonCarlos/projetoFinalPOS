@@ -17,19 +17,21 @@ class CreateEventsTable extends Migration
             $table->id();
             $table->bigInteger('usuario_id')->unsigned();
             $table->bigInteger('motorista_id')->unsigned();
+            $table->bigInteger('escola_id')->unsigned();
             $table->string('title');
             $table->dateTime('start');
             $table->dateTime('end');
             $table->string('color',7);
             $table->longText('description')->nullable();
-            $table->string('nome_da_escola');
+            $table->timestamps();
             
             $table->foreign('motorista_id')->references('id')->on('motoristas')
             ->onDelete('cascade');
             $table->foreign('usuario_id')->references('id')->on('usuarios')
             ->onDelete('cascade');
+            $table->foreign('escola_id')->references('id')->on('escolas')
+            ->onDelete('cascade');
 
-            $table->timestamps();
         });
     }
 

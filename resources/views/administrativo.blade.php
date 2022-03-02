@@ -36,12 +36,26 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{route('acessar')}}">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('cad_usu')}}">Cadastro de usuario</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
+                            Cadastros
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('cad_usu')}}">Cadastro de usuario</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('cadMoto')}}">Cadastro de motorista</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('cadEscola')}}">Cadastro de Escola</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('cadCar')}}">Cadastro de Carro</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('cadMoto')}}">Cadastro de motorista</a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/gerarPDF1')}}">veiculos locados</a>
                     </li>
@@ -131,10 +145,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="9" class="agenda">
-                            LOCAÇÕES AGENDADAS
+                        <td colspan="5" align="center">
+                            <p class="font-weight-bold align-center"> LOCAÇÕES AGENDADAS </p>
                             <table class="loca" rules="rows">
-                                <thead>
+                                <thead class="thead-dark">
                                     <tr>
                                         <th>codigo</th>
                                         <th>dia e horario inicio</th>
@@ -146,8 +160,8 @@
                                         @foreach ($us->eventos as $evento)
                                             <tr>
                                                 <td>{{$evento->id}}</td>
-                                                <td>{{\Carbon\Carbon::parse($evento->start)->format('d/m/Y HH:m')}}</td>
                                                 <td>{{\Carbon\Carbon::parse($evento->start)->format('d/m/Y H:m')}}</td>
+                                                <td>{{\Carbon\Carbon::parse($evento->end)->format('d/m/Y H:m')}}</td>
                                                 <td>{{$evento->nome_da_escola}}</td>
                                             </tr>
                                         @endforeach
@@ -159,6 +173,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {!! $usuarios->links() !!}
         </div>
     </div>
 

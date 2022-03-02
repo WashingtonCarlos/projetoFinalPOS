@@ -29,6 +29,14 @@ Route::get('/editar/{id}',[UserController::class, 'editar'])->name('editar')->mi
 Route::post('/users/{id}',[UserController::class, 'atualizar'])->middleware('auth');
 Route::post('/upsenhaADM/{id}',[LoginController::class, 'updateSenhaADM'])->middleware('auth');
 Auth::routes();
+//Tela de Cadastro de Escola 
+Route::get('/cadastroEscola', function(){
+    return view('cad_escola');
+})->name('cadEscola');
+//Tela de Cadastro de Veiculos
+Route::get('/cadastroVeiculo', function(){
+    return view('cad_car');
+})->name('cadCar');
 //Tela de Cadastro do Usuario 
  Route::get('/cadastro', function(){
      return view('cadastro');

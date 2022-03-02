@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Motoristas extends Migration
+class CreateEscolasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,17 @@ class Motoristas extends Migration
      */
     public function up()
     {
-        Schema::create('motoristas', function (Blueprint $table){
+        Schema::create('escolas', function (Blueprint $table) {
             $table->id();
-            $table->string('cep');
-            $table->string('cidade');
-            $table->string('nome');
+            $table->string('nome_da_escola');
+            $table->string('diretor');
+            $table->string('ViceDiretor');
+            $table->string('email');
             $table->string('endereco');
-            $table->string('cnh');
-            $table->string('categoria');
-            $table->string('estado');
             $table->string('telefone');
             $table->timestamps();
-
         });
     }
-    
-    
 
     /**
      * Reverse the migrations.
@@ -37,6 +32,6 @@ class Motoristas extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('motoristas');
+        Schema::dropIfExists('escolas');
     }
 }

@@ -2,8 +2,10 @@
 
 namespace Frota\Http\Controllers;
 
+use Frota\Models\Escola;
 use Frota\Models\Motorista;
 use Frota\Models\Usuario;
+use Frota\Models\Veiculo;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,17 +19,21 @@ class UserController extends Controller
 {
     private $populacao;
     private $conducao;
+    private $car;
+    private $school;
 
-    public function __construct(Usuario $usuario2, Motorista $motorista2)
+    public function __construct(Usuario $usuario2, Motorista $motorista2, Veiculo $car, Escola $school)
     {
         $this->populacao = $usuario2;
         $this->conducao = $motorista2;
+        $this->car = $car;
+        $this->school = $school;
     }
 
     public function lista()
     {
 
-        $usuarios = Usuario::all();
+        $usuarios = Usuario::paginate(3);
         //dd($usuarios->items);
         return view('administrativo',['usuarios' =>$usuarios]);
     }
@@ -167,5 +173,7 @@ class UserController extends Controller
         $motorista = $this->conducao->search($request->search2);
         return view('administrativo_moto')->with('motoristas', $motorista);
     }
+
+    
 
 }

@@ -136,7 +136,7 @@
                     @enderror
                 </div>
             </div>
-            <div>
+            <div class="form-group col-lg-12" style="text-align: right;">
                 <button type="submit" class="btn btn-primary col-md-4">Salvar</button>
             </div>
         </form>

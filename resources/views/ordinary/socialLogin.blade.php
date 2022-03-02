@@ -13,11 +13,21 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputCPF">CPF</label>
-                    <input type="text" class="form-control" name="cpf" placeholder="Apenas os numeros" required>
+                    <input type="text"  class="form-control @error('cpf') is-invalid @enderror" placeholder="Apenas os numeros" name="cpf" id="cpf">
+                    @error('cpf')
+                    <div class="invalid-feedback alert-danger">
+                        {{$message}}
+                    </div>
+                    @enderror
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputPassword4">Senha</label>
-                    <input type="password" class="form-control" name="password" placeholder="Senha">
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" placeholder="Senha" >
+                    @error('password')
+                    <div class="invalid-feedback alert-danger">
+                        {{$message}}
+                    </div>
+                    @enderror
                 </div>
             </div>
             <div class="form-group">
@@ -31,7 +41,12 @@
             </div>
             <div class="form-group">
                 <label for="endereco">Endereço</label>
-                <input type="text" class="form-control"  name="endereco" placeholder="Apartamento, hotel, casa, etc." required>
+                <input type="text" class="form-control @error('endereco') is-invalid @enderror"  name="endereco" id="endereco" placeholder="Apartamento, hotel, casa, etc." >
+                @error('endereco')
+                <div class="invalid-feedback alert-danger">
+                    {{$message}}
+                </div>
+                @enderror
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">

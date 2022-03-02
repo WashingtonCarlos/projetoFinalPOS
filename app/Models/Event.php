@@ -18,11 +18,11 @@ class Event extends Model
         'end' => 'required',
         'color' => 'required',
         'description' => 'required',
-        'nome_da_escola' => 'required',
         'usuario_id' => 'required',
+        'escola_id' => 'required',
     ];
 
-    protected $fillable = ['title','start','end','color','description','nome_da_escola','usuario_id'];
+    protected $fillable = ['title','start','end','color','description','usuario_id','escola_id'];
 
     public function usuario(){
         return $this->belongsTo(Usuario::class, 'usuario_id', 'id');
@@ -30,6 +30,10 @@ class Event extends Model
 
     public function motorista(){
         return $this->hasMany(Motorista::class);
+    }
+
+    public function escola(){
+        return $this->belongsTo(Escola::class, 'escola_id','id');
     }
 
  //   public function getStartAttribute($value){
