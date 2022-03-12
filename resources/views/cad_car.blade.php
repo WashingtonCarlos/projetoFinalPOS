@@ -28,7 +28,7 @@
         </div>
         @endif
 
-        <form class="col-md-12" method="POST" action="{{url('/registrar')}}">
+        <form class="col-md-12" method="POST" action="{{url('/registrarVeiculo')}}">
             {{csrf_field()}}
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -44,32 +44,32 @@
                     <label for="inputTipoVeiculo">TIpo de Veiculo</label>
                     <select id="inputTipoVeiculo" class="form-control" name="tipoVeiculo">
                         <option>Escolher...</option>
-                        <option value="1">Caminhonete</option>
-                        <option value="2">Carro Comum</option>
-                        <option value="3">Van</option>
-                        <option value="3">Onibus Escolar</option>
+                        <option value="Caminhonete">Caminhonete</option>
+                        <option value="Carro Comum">Carro Comum</option>
+                        <option value="Van">Van</option>
+                        <option value="Onibus Escolar">Onibus Escolar</option>
                     </select>
                 </div>
                 <div class="form-group col-md-2">
                     <label for="inputEspecie">Especie de Veiculo</label>
                     <select id="inputEspecie" class="form-control" name="especie">
                         <option>Escolher...</option>
-                        <option value="1">Passageiro</option>
-                        <option value="2">Carga</option>
-                        <option value="3">Misto</option>
+                        <option value="Passageiro">Passageiro</option>
+                        <option value="Carga">Carga</option>
+                        <option value="Misto">Misto</option>
                     </select>
                 </div>
                 <div class="form-group col-md-2">
                     <label for="inputCategoria">Cadegoria de Veiculo</label>
                     <select id="inputCategoria" class="form-control" name="categoria">
                         <option>Escolher...</option>
-                        <option value="1">Oficial</option>
-                        <option value="2">Locado</option>
+                        <option value="Oficial">Oficial</option>
+                        <option value="Locado">Locado</option>
                     </select>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputCapacidade">Capacidade Maxima</label>
-                    <input type="number" class="form-control @error('ViceDiretor') is-invalid @enderror" name="capacidade" id="capacidade" placeholder="Capacidade Maxima do Veiculo">
+                    <input type="number" class="form-control @error('capacidade') is-invalid @enderror" name="capacidade" id="capacidade" placeholder="Capacidade Maxima do Veiculo">
                     @error('capacidade')
                     <div class="invalid-feedback alert-danger">
                         {{$message}}
@@ -78,7 +78,7 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="placa">Placa de Veiculo</label>
-                    <input type="text" class="form-control @error('endereco') is-invalid @enderror" name="placa" id="placa" placeholder="Placa do Veiculo">
+                    <input type="text" class="form-control @error('placa') is-invalid @enderror" name="placa" id="placa" placeholder="Placa do Veiculo">
                     @error('placa')
                     <div class="invalid-feedback alert-danger">
                         {{$message}}

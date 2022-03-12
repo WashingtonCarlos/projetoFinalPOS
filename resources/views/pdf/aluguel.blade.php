@@ -20,11 +20,11 @@
     <br>
     <h3><label for="inputDados">Data e Hora inicial</label></h3>
     <br>
-    <input class="" type="text" value="{{$dado->start}}">
+    <input class="" type="text" value="{{\Carbon\Carbon::parse($dado->start)->format('d/m/Y H:i:s')}}">
     <br>
     <h3><label for="inputDados">Data e Hora final</label></h3>
     <br>
-    <input class="" type="text" value="{{$dado->end}}">
+    <input class="" type="text" value="{{\Carbon\Carbon::parse($dado->end)->format('d/m/Y H:i:s')}}">
     @endforeach
 </body>
 </html>

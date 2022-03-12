@@ -28,7 +28,20 @@ Route::get('/detalhe', [UserController::class, 'mostrar'])->middleware('auth');
 Route::get('/editar/{id}',[UserController::class, 'editar'])->name('editar')->middleware('auth');
 Route::post('/users/{id}',[UserController::class, 'atualizar'])->middleware('auth');
 Route::post('/upsenhaADM/{id}',[LoginController::class, 'updateSenhaADM'])->middleware('auth');
-Auth::routes();
+//Tela do Administrativo da escola
+Route::post('/registrarEscola',[UserController::class,'registroEscola']);
+Route::get('/escolas', [UserController::class, 'listaEscola']);
+Route::get('/detalheEscola{id}', [UserController::class, 'mostrarEscola'])->name('detalheEscola')->middleware('auth');
+Route::get('/editarEscola/{id}',[UserController::class, 'editarEscola'])->name('editarEscola')->middleware('auth');
+Route::get('/deletarEscola/{id}',[UserController::class,'deletarEscola'])->name('deletarEscola')->middleware('auth');
+Route::post('/schools/{id}',[UserController::class, 'atualizarEscola'])->middleware('auth');
+//Tela do Administrativo de veiculos
+Route::post('/registrarVeiculo',[UserController::class,'registroVeiculo']);
+Route::get('/veiculos', [UserController::class, 'listaVeiculo']);
+Route::get('/detalheVeiculo', [UserController::class, 'mostrarVeiculo'])->middleware('auth');
+Route::get('/editarVeiculo/{id}',[UserController::class, 'editarVeiculo'])->name('editarVeiculos')->middleware('auth');
+Route::get('/deletarVeiculo/{id}',[UserController::class,'deletarVeiculo'])->middleware('auth');
+Route::post('/car/{id}',[UserController::class, 'atualizarVeiculo'])->middleware('auth');
 //Tela de Cadastro de Escola 
 Route::get('/cadastroEscola', function(){
     return view('cad_escola');
@@ -74,6 +87,8 @@ Route::post('/verify/cpf', [UserController::class,'perfil']);
 //Rotas de busca
 Route::any('funcionarios/search',[UserController::class,'search'])->name('funcionarios.search')->middleware('auth');
 Route::any('motorista/search',[UserController::class,'search2'])->name('motorista.search')->middleware('auth');
+Route::any('escolas/search',[UserController::class,'search3'])->name('escolas.search')->middleware('auth');
+Route::any('veiculos/search',[UserController::class,'search4'])->name('veiculos.search')->middleware('auth');
 //gerar arquivo PDF
 Route::get('/gerarPDF/{id}',[EventController::class,'pdfCreate']);
 Route::get('/gerarPDF1',[EventController::class,'pdfCreate1']);
@@ -83,6 +98,11 @@ Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFaceboo
 Route::get('/acessoSocial',[LoginController::class,'LoginUsuario'])->name('loginSocial');
 Route::post('/registrarSocial',[LoginController::class,'registroSocial'])->name('cadastrasocial');
 
-//Auth::routes();
+Auth::routes();
+//POLITICA DE PRIVACIDADE
+Route::get('/privacidade', function () {
+    return view('privacidade.politica');
+});
+
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

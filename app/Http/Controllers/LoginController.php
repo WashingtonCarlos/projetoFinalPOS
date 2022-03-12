@@ -3,6 +3,8 @@
 namespace App\Models\User;
 namespace Frota\Http\Controllers;
 
+use FontLib\TrueType\Collection;
+use Frota\Models\Escola;
 use Frota\Models\Motorista;
 use Frota\Models\Usuario as ModelsUsuario;
 use Illuminate\Support\Facades\Validator;
@@ -115,8 +117,7 @@ class LoginController extends Controller
                     // Pesquisando o nome para colocar no navBar
                     $nomeSearch = ModelsUsuario::select('nome')->where('cpf',$request->cpf)->first();
                     $nome = $nomeSearch['nome'];
-                    $request->session()->put('nome', $nome); 
-                    return redirect()->intended('usuario');
+                    return redirect()->action([FullCalendarController::class,'index']);
                 }
                 
             }

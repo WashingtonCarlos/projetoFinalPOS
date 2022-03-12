@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       let dados = {
         usuario_id: $('#usuario_id').val(),
+        escola_id: $('#escola_id').val(),
         title: $('#title').val(),
         description: $('#description').val(),
         nome_da_escola: $('#nome_da_escola').val(),
@@ -128,6 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let dados = {
       usuario_id: $('#usuario_id').val(),
+      escola_id: $('#escola_id').val(),
       id: $('#id').val(),
       title: $('#title').val(),
       description: $('#description').val(),
@@ -144,6 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
     let dados = {
       usuario_id: $('#usuario_id').val(),
+      escola_id: $('#escola_id').val(),
       id: $('#id').val(),
       title: $('#title').val(),
       description: $('#description').val(),

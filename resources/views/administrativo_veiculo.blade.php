@@ -34,30 +34,7 @@
             <div class="collapse navbar-collapse" id="navbarFrota">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{route('acessar')}}">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
-                            Cadastros
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('cad_usu')}}">Cadastro de usuario</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('cadMoto')}}">Cadastro de motorista</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('cadEscola')}}">Cadastro de Escola</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('cadCar')}}">Cadastro de Carro</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url('/gerarPDF1')}}">veiculos locados</a>
+                        <a class="nav-link" href="{{url('/funcionarios')}}">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
@@ -72,7 +49,7 @@
 
                 </ul>
             </div>
-                <form class="form-inline my-2 my-lg-0 navbar-right" action="{{route('funcionarios.search')}}" method="POST">
+                <form class="form-inline my-2 my-lg-0 navbar-right" action="{{route('veiculos.search')}}" method="POST">
                     {{csrf_field()}}
                     <input class="form-control mr-sm-2" type="search" placeholder="Pesquisa" aria-label="Search" name="search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">pesquisa</button>
@@ -88,27 +65,26 @@
 
                 <thead>
                     <th> ID </th>
-                    <th>nome</th>
-                    <th>CPF</th>
-                    <th>Email</th>
-                    <th>Nivel de Acesso</th>
+                    <th>marcaModelo</th>
+                    <th>tipoVeiculo</th>
+                    <th>categoria</th>
+                    <th>placa</th>
                     <th>Editar</th>
                     <th>Deletar</th>
                     <th>Visualizar</th>
-                    <th>trocar a senha</th>
                 </thead>
                 <tbody>
-                    @foreach ($usuarios as $us)
+                    @foreach ($veiculos as $ve)
                     <tr>
-                        <td>{{ $us->id }}</td>
-                        <td>{{ $us['nome'] }}</td>
-                        <td>{{ $us['cpf'] }}</td>
-                        <td>{{ $us['email'] }}</td>
-                        <td class="text-center">{{ $us['nivel_de_acesso'] }}</td>
+                        <td>{{ $ve->id }}</td>
+                        <td>{{ $ve['marcaModelo'] }}</td>
+                        <td>{{ $ve['tipoVeiculo'] }}</td>
+                        <td>{{ $ve['categoria'] }}</td>
+                        <td>{{ $ve['placa'] }}</td>
 
                         <td>
                             <p data-placement='top' data-toggle='tooltip' title='Editar'>
-                                <a href="{{url('editar',[$us['id']])}}">
+                                <a href="{{url('editar',[$ve['id']])}}">
                                     <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target='#edit'>
                                         <span class="glyphicon glyphicon-pencil">
                                         </span>
@@ -118,7 +94,7 @@
                         </td>
                         <td>
                             <p data-placement="top" data-toggle='tooltip' title="Deletar">
-                                <a href="{{url('deletar',[$us['id']])}}" onclick="return confirm('Voce realmente deseja deletar o usuario ?');"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete">
+                                <a href="{{url('deletar',[$ve['id']])}}" onclick="return confirm('Voce realmente deseja deletar o usuario ?');"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete">
                                         <span class="glyphicon glyphicon-trash">
 
                                         </span>
@@ -127,53 +103,18 @@
                         </td>
                         <td>
                             <p data-placement="top" data-toggle="tooltip" title="Visualizar">
-                                <a href="{{url('busca',[$us['id']])}}"><button class="btn btn-info btn-xs" data-title="Visualizar" data-toggle="modal" data-target="#visualizar">
+                                <a href="{{url('busca',[$ve['id']])}}"><button class="btn btn-info btn-xs" data-title="Visualizar" data-toggle="modal" data-target="#visualizar">
                                         <span class="glyphicon glyphicon-eye-open">
 
                                         </span>
                                     </button></a>
                             </p>
                         </td>
-                        <td>
-                            <p data-placement="top" data-toggle="tooltip" title="Atualizar Senha">
-                                <a href="{{url('senha',[$us['id']])}}"><button class="btn btn-info btn-xs" data-title="Senha" data-toggle="modal" data-target="#senha">
-                                        <span class="glyphicon glyphicon-refresh">
-
-                                        </span>
-                                    </button></a>
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="5" align="center">
-                            <p class="font-weight-bold align-center"> LOCAÇÕES AGENDADAS </p>
-                            <table class="loca" rules="rows">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th>codigo</th>
-                                        <th>dia e horario inicio</th>
-                                        <th>dia e horario final</th>
-                                        <th>nome da escola</th>
-                                    </tr>
-                                    <tbody>
-                                        
-                                        @foreach ($us->eventos as $evento)
-                                            <tr>
-                                                <td>{{$evento->id}}</td>
-                                                <td>{{\Carbon\Carbon::parse($evento->start)->format('d/m/Y H:i:s')}}</td>
-                                                <td>{{\Carbon\Carbon::parse($evento->end)->format('d/m/Y H:i:s')}}</td>
-                                                <td>{{$evento->nome_da_escola}}</td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                            </table>
-                        </td>
-
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-            {!! $usuarios->links() !!}
+            {!! $veiculos->links() !!}
         </div>
     </div>
 

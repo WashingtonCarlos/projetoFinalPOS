@@ -17,6 +17,7 @@ class Veiculo extends Model
         'marcaModelo' => 'required|min:6',
         'tipoVeiculo' => 'required',
         'especie' => 'required',
+        'categoria' => 'required',
         'capacidade' => 'required',
         'placa' => 'required',
 
@@ -24,5 +25,19 @@ class Veiculo extends Model
 
     public function motorista(){
         $this->hasOne(Motorista::class,'motorista_id','id');
+    }
+
+    public function search($search = null){
+
+        $results = $this->where(function($query) use($search){
+
+            if($search){
+                $query->where('marcaModelo','LIKE',"%{$search}%");
+            }
+
+        })
+        ->paginate();
+        
+        return $results;
     }
 }

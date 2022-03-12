@@ -29,7 +29,7 @@
         </div>
         @endif
 
-        <form class="col-md-12" method="POST" action="{{url('/registrar')}}">
+        <form class="col-md-12" method="POST" action="{{url('/registrarEscola')}}">
             {{csrf_field()}}
             <div class="form-row">
                 <div class="form-group col-md-6">

@@ -74,6 +74,7 @@
           <div class="alert alert-danger" style="display:none"></div>
           <form method="" action="" enctype="multipart/form-data">
           <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+          <input type="hidden" name="escola_id" id="escola_id">
           <input type="hidden" name="id" id="id">
             <div class="form-group">
               <label for="">Titulo</label>
@@ -85,9 +86,9 @@
               <label for="">ESCOLAS:</label>
               <select class="form-control" name="nome_da_escola" id="nome_da_escola" required>
                 <option selected>Escolher...</option>
-                <option value="E. M. Padre Eddie Bernades">E. M. Padre Eddie Bernades</option>
-                <option value="E. M. Frei Eugênio">E. M. Frei Eugênio</option>
-                <option value="CEMEI Maria Eduarda Farneze">CEMEI Maria Eduarda Farneze</option>
+                @foreach ($escolas as $escola)
+                <option value="{{$escola->nome_da_escola}}">{{$escola->nome_da_escola}}</option>
+                @endforeach
               </select>
             </div>
             <!-- Descrição do transporte -->

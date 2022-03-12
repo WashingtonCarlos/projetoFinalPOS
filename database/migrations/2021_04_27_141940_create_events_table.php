@@ -29,8 +29,6 @@ class CreateEventsTable extends Migration
             ->onDelete('cascade');
             $table->foreign('usuario_id')->references('id')->on('usuarios')
             ->onDelete('cascade');
-            $table->foreign('escola_id')->references('id')->on('escolas')
-            ->onDelete('cascade');
 
         });
     }

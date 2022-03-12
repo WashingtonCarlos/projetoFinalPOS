@@ -3,6 +3,7 @@
 namespace Frota\Http\Controllers;
 
 use Barryvdh\DomPDF\Facade as PDF;
+use Frota\Models\Escola;
 use Frota\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +31,9 @@ class EventController extends Controller
     }
 
     public function store(Request $request){
-
+        
+        $dados = Escola::select('id')->where('nome_da_escola',$request->nome_da_escola)->first();
+        $request->usuario_id = $dados['id'];
         $validator = Validator::make($request->all(),Event::$rules);
 
         if($validator->fails()){

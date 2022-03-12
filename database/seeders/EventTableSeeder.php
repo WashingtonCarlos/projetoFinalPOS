@@ -14,26 +14,14 @@ class EventTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('events')->insert([
+        DB::table('escolas')->insert([
             [
-                'usuario_id' => 1,
-                //'motorista_id' => 1,
-                'title' => 'Reunião',
-                'start' => '2021-04-27 12:00:00',
-                'end' => '2021-04-27 14:00:00',
-                'color' => '#807fa8',
-                'description' => 'A decisão do projeto e muito grande pra ser levado a serio',
-                'nome_da_escola' => 'Escola Municipal Jobert de Carvalho'
-            ],
-            [
-                'usuario_id' => 1,
-                //'motorista_id' => 1,
-                'title' => 'Aula dia 5',
-                'start' => '2021-04-28 12:00:00',
-                'end' => '2021-04-28 14:00:00',
-                'color' => '#5b7d68',
-                'description' => 'O começo das aulas e complicado por conta do Corona Virus',
-                'nome_da_escola' => 'Escola Municipal Frei Eugênio'
+                'nome_da_escola' => 'Escola Fulano',
+                'diretor' => 'Fulano de Tal',
+                'ViceDiretor' => 'Aquele da ai',
+                'email' => 'fulano@gmail.com',
+                'endereco' => 'Rua dos Fulanos, 20 Bairro Fulano',
+                'telefone' => '(34) 9199-1856'
             ]
         ]);
     }
