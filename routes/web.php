@@ -29,15 +29,15 @@ Route::get('/editar/{id}',[UserController::class, 'editar'])->name('editar')->mi
 Route::post('/users/{id}',[UserController::class, 'atualizar'])->middleware('auth');
 Route::post('/upsenhaADM/{id}',[LoginController::class, 'updateSenhaADM'])->middleware('auth');
 //Tela do Administrativo da escola
-Route::post('/registrarEscola',[UserController::class,'registroEscola']);
-Route::get('/escolas', [UserController::class, 'listaEscola']);
+Route::post('/registrarEscola',[UserController::class,'registroEscola'])->middleware('auth');
+Route::get('/escolas', [UserController::class, 'listaEscola'])->middleware('auth');
 Route::get('/detalheEscola{id}', [UserController::class, 'mostrarEscola'])->name('detalheEscola')->middleware('auth');
 Route::get('/editarEscola/{id}',[UserController::class, 'editarEscola'])->name('editarEscola')->middleware('auth');
 Route::get('/deletarEscola/{id}',[UserController::class,'deletarEscola'])->name('deletarEscola')->middleware('auth');
 Route::post('/schools/{id}',[UserController::class, 'atualizarEscola'])->middleware('auth');
 //Tela do Administrativo de veiculos
 Route::post('/registrarVeiculo',[UserController::class,'registroVeiculo']);
-Route::get('/veiculos', [UserController::class, 'listaVeiculo']);
+Route::get('/veiculos', [UserController::class, 'listaVeiculo'])->middleware('aut');
 Route::get('/detalheVeiculo', [UserController::class, 'mostrarVeiculo'])->middleware('auth');
 Route::get('/editarVeiculo/{id}',[UserController::class, 'editarVeiculo'])->name('editarVeiculos')->middleware('auth');
 Route::get('/deletarVeiculo/{id}',[UserController::class,'deletarVeiculo'])->middleware('auth');
@@ -45,11 +45,11 @@ Route::post('/car/{id}',[UserController::class, 'atualizarVeiculo'])->middleware
 //Tela de Cadastro de Escola 
 Route::get('/cadastroEscola', function(){
     return view('cad_escola');
-})->name('cadEscola');
+})->name('cadEscola')->middleware('auth');
 //Tela de Cadastro de Veiculos
 Route::get('/cadastroVeiculo', function(){
     return view('cad_car');
-})->name('cadCar');
+})->name('cadCar')->middleware('auth');
 //Tela de Cadastro do Usuario 
  Route::get('/cadastro', function(){
      return view('cadastro');
