@@ -32,8 +32,9 @@ class EventController extends Controller
 
     public function store(Request $request){
         
-        $dados = Escola::select('id')->where('nome_da_escola',$request->nome_da_escola)->first();
-        $request->usuario_id = $dados['id'];
+        //$dados = Escola::select('id')->where('nome_da_escola',$request->nome_da_escola)->first();
+        //$request->usuario_id = $dados['id'];
+        //dd($request);
         $validator = Validator::make($request->all(),Event::$rules);
 
         if($validator->fails()){

@@ -39,11 +39,11 @@ document.addEventListener('DOMContentLoaded', function() {
     eventClick:function(info){
 
       var event = info.event;
-      //console.log(event);
+      console.log(event);
       //captura dos elementos do banco 
       $('#title').html(event.title);
       $('#description').html(event.description);
-      $('#nome_da_escola').html(event.nome_da_escola);
+      $('#nome_da_escola').html(event.escola_id);
       $('#color').html(event.color);
       $('#start').html(event.start);
       $('#end').html(event.end);
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
       $('#id').val(info.event.id);
       $('#title').val(info.event.title);
       $('#description').val(info.event.extendedProps.description);
-      $('#nome_da_escola').val(info.event.extendedProps.nome_da_escola);
+      $('#nome_da_escola').val(info.event.extendedProps.escola_id);
       $('#color').val(info.event.backgroundColor);
       $('#start').val(moment(info.event.start).format("YYYY-MM-DD HH:mm"));
       $('#end').val(moment(info.event.end).format("YYYY-MM-DD HH:mm"));
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
       $('#id').val(info.event.id);
       $('#title').val(info.event.title);
       $('#description').val(info.event.extendedProps.description);
-      $('#nome_da_escola').val(info.event.extendedProps.nome_da_escola);
+      $('#nome_da_escola').val(info.event.extendedProps.escola_id);
       $('#color').val(info.event.backgroundColor);
       $('#start').val(moment(info.event.start).format("YYYY-MM-DD HH:mm"));
       $('#end').val(moment(info.event.end).format("YYYY-MM-DD HH:mm"));
@@ -86,10 +86,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
       let dados = {
         usuario_id: $('#usuario_id').val(),
-        escola_id: $('#escola_id').val(),
+        escola_id: $('#nome_da_escola').val(),
         title: $('#title').val(),
         description: $('#description').val(),
-        nome_da_escola: $('#nome_da_escola').val(),
         color: $('#color').val(),
         start: $('#start').val(),
         end: $('#end').val(),
@@ -116,9 +115,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
             });
           } else{
-
-            alert("Atualizado com sucesso: "+dados.nome_da_escola);
+            
+            alert("Armazenado com sucesso!!!");
             calendar.refetchEvents();
+
           }
         }
       });
@@ -129,11 +129,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let dados = {
       usuario_id: $('#usuario_id').val(),
-      escola_id: $('#escola_id').val(),
+      escola_id: $('#nome_da_escola').val(),
       id: $('#id').val(),
       title: $('#title').val(),
       description: $('#description').val(),
-      nome_da_escola: $('#nome_da_escola').val(),
       color: $('#color').val(),
       start: $('#start').val(),
       end: $('#end').val()
@@ -146,11 +145,10 @@ document.addEventListener('DOMContentLoaded', function() {
   
     let dados = {
       usuario_id: $('#usuario_id').val(),
-      escola_id: $('#escola_id').val(),
+      escola_id: $('#nome_da_escola').val(),
       id: $('#id').val(),
       title: $('#title').val(),
       description: $('#description').val(),
-      nome_da_escola: $('#nome_da_escola').val(),
       color: $('#color').val(),
       start: $('#start').val(),
       end: $('#end').val(),
@@ -174,9 +172,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
             });
           } else{
-
-            alert("Armazenado com sucesso: "+dados.nome_da_escola);
+            
+            alert("Atualizado com sucesso!!!!");
             calendar.refetchEvents();
+
           }
         }
       });
@@ -196,11 +195,15 @@ document.addEventListener('DOMContentLoaded', function() {
         dataType: 'json',
         data: dados,
         success: function(msg) {
-          alert("Excluido com sucesso: "+dados.nome_da_escola);
+
+          alert("Excluido com sucesso!!!");
           calendar.refetchEvents();
+
         },
         error: function(error) {
+          
           alert("A um problema na exclusão !!! "+error);
+          
         }
       });
   });
@@ -228,11 +231,11 @@ document.addEventListener('DOMContentLoaded', function() {
       dataType: 'json',
       data: dados,
       success: function(url){
-        window.open("http://frotauberaba.dev.br/gerarPDF/"+dados.id,"_blank");
+        window.open("https://frotauberaba.dev.br/gerarPDF/"+dados.id,"_blank");
         calendar.refetchEvents();
       },
       error: function(error){
-        window.open("http://frotauberaba.dev.br/gerarPDF/"+dados.id,"_blank");
+        window.open("https://frotauberaba.dev.br/gerarPDF/"+dados.id,"_blank");
         calendar.refetchEvents();
       }
     });

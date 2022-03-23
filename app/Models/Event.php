@@ -21,7 +21,7 @@ class Event extends Model
         'usuario_id' => 'required',
     ];
 
-    protected $fillable = ['title','start','end','color','description','usuario_id','escola_id','nome_da_escola'];
+    protected $fillable = ['title','start','end','color','description','usuario_id','escola_id'];
 
     public function usuario(){
         return $this->belongsTo(Usuario::class, 'usuario_id', 'id');

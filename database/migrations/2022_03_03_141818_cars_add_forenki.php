@@ -14,9 +14,8 @@ class CarsAddForenki extends Migration
     public function up()
     {
         Schema::table('events', function($table){
-            $table->tinyInteger('active')
-                ->default(1)
-                ->nullable();
+            $table->foreign('escola_id')->references('id')->on('escolas')
+            ->onDelete('cascade');
         });
     }
 
