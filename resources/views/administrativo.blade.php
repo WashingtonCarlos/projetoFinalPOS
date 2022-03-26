@@ -153,7 +153,7 @@
                                         <th>codigo</th>
                                         <th>dia e horario inicio</th>
                                         <th>dia e horario final</th>
-                                        <th>nome da escola</th>
+                                        <th>nome do evento</th>
                                     </tr>
                                     <tbody>
                                         
@@ -162,7 +162,7 @@
                                                 <td>{{$evento->id}}</td>
                                                 <td>{{\Carbon\Carbon::parse($evento->start)->format('d/m/Y H:i:s')}}</td>
                                                 <td>{{\Carbon\Carbon::parse($evento->end)->format('d/m/Y H:i:s')}}</td>
-                                                <td>{{$evento->nome_da_escola}}</td>
+                                                <td>{{$evento->title}}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

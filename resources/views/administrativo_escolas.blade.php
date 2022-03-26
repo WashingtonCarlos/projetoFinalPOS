@@ -36,6 +36,9 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{url('/funcionarios')}}">Home <span class="sr-only">(current)</span></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('cadEscola')}}">Cadastro de Escola</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
                             {{auth()->user()->nome}}
@@ -45,9 +48,6 @@
                                 <a class="dropdown-item" href="{{url('/logout')}}">Sair</a>
                             </li>
                         </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('cadEscola')}}">Cadastro de Escola</a>
                     </li>
                 </ul>
             </div>

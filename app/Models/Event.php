@@ -21,14 +21,14 @@ class Event extends Model
         'usuario_id' => 'required',
     ];
 
-    protected $fillable = ['title','start','end','color','description','usuario_id','escola_id'];
+    protected $fillable = ['title','start','end','color','description','usuario_id','escola_id','motorista_id'];
 
     public function usuario(){
         return $this->belongsTo(Usuario::class, 'usuario_id', 'id');
     }
 
     public function motorista(){
-        return $this->hasMany(Motorista::class);
+        return $this->belongsTo(Motorista::class,'motorista_id','id');
     }
 
     public function escola(){

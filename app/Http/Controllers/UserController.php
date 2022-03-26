@@ -2,6 +2,7 @@
 
 namespace Frota\Http\Controllers;
 
+use Frota\Models\Event;
 use Frota\Models\Escola;
 use Frota\Models\Motorista;
 use Frota\Models\Usuario;
@@ -92,7 +93,7 @@ class UserController extends Controller
     public function lista()
     {
         $usuarios = Usuario::paginate(3);
-        //dd($usuarios->items);
+
         return view('administrativo', ['usuarios' => $usuarios]);
     }
     //Listagem do escolas cadastradas
@@ -148,7 +149,7 @@ class UserController extends Controller
         $escola = Escola::find($id);
         $request->session()->flash('status', 'O Usuario ' . $escola->nomeEscola . ' foi removido com sucesso!');
         $escola = DB::delete('delete from escolas where id = ?', [$id]);
-        return redirect('/funcionarios');
+        return redirect('/escolas');
     }
 
     public function deletarVeiculo($id, Request $request)
@@ -156,7 +157,7 @@ class UserController extends Controller
         $veiculo = Escola::find($id);
         $request->session()->flash('status', 'O Usuario ' . $veiculo->nomeEscola . ' foi removido com sucesso!');
         $escola = DB::delete('delete from veiculos where id = ?', [$id]);
-        return redirect('/funcionarios');
+        return redirect('/veiculos');
     }
 
     public function editar($id)
@@ -211,7 +212,7 @@ class UserController extends Controller
             $esco->endereco = $request->input('endereco');
             $esco->telefone = $request->input('telefone');
             $esco->save();
-            return redirect('/funcionarios')->with('success', 'Escola atualizado com sucesso !!!');
+            return redirect('/escolas')->with('success', 'Escola atualizado com sucesso !!!');
         }
     }
 
@@ -227,7 +228,7 @@ class UserController extends Controller
             $car->endereco = $request->input('endereco');
             $car->telefone = $request->input('telefone');
             $car->save();
-            return redirect('/funcionarios')->with('success', 'Veiculo atualizado com sucesso !!!');
+            return redirect('/veiculos')->with('success', 'Veiculo atualizado com sucesso !!!');
         }
     }
 
