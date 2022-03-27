@@ -36,6 +36,9 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{url('/funcionarios')}}">Home <span class="sr-only">(current)</span></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('cadCar')}}">Cadastro de Veiculos</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
                             {{auth()->user()->nome}}

@@ -51,7 +51,7 @@
                                 <a class="nav-link" href="{{route('cadEscola')}}">Cadastro de Escola</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('cadCar')}}">Cadastro de Carro</a>
+                                <a class="nav-link" href="{{route('cadCar')}}">Cadastro de Veiculos</a>
                             </li>
                         </ul>
                     </li>

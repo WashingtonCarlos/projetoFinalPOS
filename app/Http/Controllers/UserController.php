@@ -107,7 +107,7 @@ class UserController extends Controller
     public function listaVeiculo()
     {
         $veiculos = Veiculo::paginate(3);
-        //dd($usuarios->items);
+        //dd($veiculos->items);
         return view('administrativo_veiculo', ['veiculos' => $veiculos]);
     }
 

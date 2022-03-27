@@ -37,7 +37,7 @@ Route::get('/deletarEscola/{id}',[UserController::class,'deletarEscola'])->name(
 Route::post('/schools/{id}',[UserController::class, 'atualizarEscola'])->middleware('auth');
 //Tela do Administrativo de veiculos
 Route::post('/registrarVeiculo',[UserController::class,'registroVeiculo']);
-Route::get('/veiculos', [UserController::class, 'listaVeiculo'])->middleware('aut');
+Route::get('/veiculos', [UserController::class, 'listaVeiculo'])->middleware('auth');
 Route::get('/detalheVeiculo', [UserController::class, 'mostrarVeiculo'])->middleware('auth');
 Route::get('/editarVeiculo/{id}',[UserController::class, 'editarVeiculo'])->name('editarVeiculos')->middleware('auth');
 Route::get('/deletarVeiculo/{id}',[UserController::class,'deletarVeiculo'])->middleware('auth');
