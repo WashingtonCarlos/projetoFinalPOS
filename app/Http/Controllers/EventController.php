@@ -57,14 +57,19 @@ class EventController extends Controller
     public function pdfCreate($id){
         //GERAR PDF DE FORMA INDIVIDUAL
         $dados = DB::select('SELECT * FROM events WHERE id = ?',[$id]);
-        $pdf = PDF::loadView('pdf.aluguel', compact('dados'));
+        //dd($dados[0]->escola_id);
+        $dados2 = Escola::all();
+        //dd($dados2);
+        $pdf = PDF::loadView('pdf.aluguel', compact('dados','dados2'));
         return $pdf->stream('aluguel.pdf', array("Attachment" => true));
     }
 
     public function pdfCreate1(){
         //GERAR PDF DE FORMA GERAL 
         $dados = Event::all();
-        $pdf = PDF::loadView('pdf.aluguel', compact('dados'));
+        //dd($dados);
+        $dados2 = Escola::all();
+        $pdf = PDF::loadView('pdf.aluguel', compact('dados','dados2'));
         return $pdf->stream('aluguel.pdf', array("Attachment" => true));
     }
 }

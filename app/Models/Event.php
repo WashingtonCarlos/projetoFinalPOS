@@ -31,7 +31,7 @@ class Event extends Model
         return $this->belongsTo(Motorista::class,'motorista_id','id');
     }
 
-    public function escola(){
+    public function escolas(){
         return $this->belongsTo(Escola::class, 'escola_id','id');
     }
 

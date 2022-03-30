@@ -8,7 +8,11 @@
 </head>
 <body>
     @foreach ($dados as $dado)
-    <h1>{{$dado->nome_da_escola}}</h1>
+        @foreach ($dados2 as $dado2)
+        @if ($dado->escola_id == $dado2->id)
+        <h1>{{$dado2->nome_da_escola}}</h1>
+        @endif
+        @endforeach
     <br>
     <h3><label for="inputDados">Local de destino</label></h3>
     <br>

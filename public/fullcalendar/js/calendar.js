@@ -225,17 +225,18 @@ document.addEventListener('DOMContentLoaded', function() {
       id: $('#id').val(),
       _token: $('#token').val()
     };
+    
     $.ajax({
       type: 'GET',
       url: '/gerarPDF/'+ dados.id,
       dataType: 'json',
       data: dados,
       success: function(url){
-        window.open("https://frotauberaba.dev.br/gerarPDF/"+dados.id,"_blank");
+        window.open("http://localhost:8000/gerarPDF/"+dados.id,"_blank");
         calendar.refetchEvents();
       },
       error: function(error){
-        window.open("https://frotauberaba.dev.br/gerarPDF/"+dados.id,"_blank");
+        window.open("http://localhost:8000/gerarPDF/"+dados.id,"_blank");
         calendar.refetchEvents();
       }
     });
