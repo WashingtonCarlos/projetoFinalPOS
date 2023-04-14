@@ -27,7 +27,10 @@ document.addEventListener('DOMContentLoaded', function() {
         alert ('Erro ao buscar o Calendario');
       }
     },
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0e8546bc56e4d53724e746addf26dea24183e6dd
     //pega a data do calendario conforme o dia que clicar
     dateClick:function(info){
       formulario.reset();
@@ -45,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
       $('#title').html(event.title);
       //$('#usuario_id').html(event.usuario_id);
       $('#description').html(event.description);
-      $('#nome_da_escola').html(event.nome_da_escola);
+      $('#nome_da_escola').html(event.escola_id);
       $('#color').html(event.color);
       $('#start').html(event.start);
       $('#end').html(event.end);
@@ -54,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
       $('#id').val(info.event.id);
       $('#title').val(info.event.title);
       $('#description').val(info.event.extendedProps.description);
-      $('#nome_da_escola').val(info.event.extendedProps.nome_da_escola);
+      $('#nome_da_escola').val(info.event.extendedProps.escola_id);
       $('#color').val(info.event.backgroundColor);
       $('#start').val(moment(info.event.start).format("YYYY-MM-DD HH:mm"));
       $('#end').val(moment(info.event.end).format("YYYY-MM-DD HH:mm"));
@@ -68,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
       $('#id').val(info.event.id);
       $('#title').val(info.event.title);
       $('#description').val(info.event.extendedProps.description);
-      $('#nome_da_escola').val(info.event.extendedProps.nome_da_escola);
+      $('#nome_da_escola').val(info.event.extendedProps.escola_id);
       $('#color').val(info.event.backgroundColor);
       $('#start').val(moment(info.event.start).format("YYYY-MM-DD HH:mm"));
       $('#end').val(moment(info.event.end).format("YYYY-MM-DD HH:mm"));
@@ -90,9 +93,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
       let dados = {
         usuario_id: $('#usuario_id').val(),
+<<<<<<< HEAD
+=======
+        escola_id: $('#nome_da_escola').val(),
+>>>>>>> 0e8546bc56e4d53724e746addf26dea24183e6dd
         title: $('#title').val(),
         description: $('#description').val(),
-        nome_da_escola: $('#nome_da_escola').val(),
         color: $('#color').val(),
         start: $('#start').val(),
         end: $('#end').val(),
@@ -111,6 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
           if (result.errors){
 
             alert("A um problema na atualização "+result.errors);
+            console.log(filtro);
             $.each(result.errors, function(key, value) {
 
               $('.alert-danger').show();
@@ -118,9 +125,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
             });
           } else{
+<<<<<<< HEAD
 
             alert("Armazenado com sucesso: "+dados.nome_da_escola);
+=======
+            
+            alert("Armazenado com sucesso!!!");
+>>>>>>> 0e8546bc56e4d53724e746addf26dea24183e6dd
             calendar.refetchEvents();
+
           }
         }
       });
@@ -131,10 +144,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let dados = {
       usuario_id: $('#usuario_id').val(),
+<<<<<<< HEAD
+=======
+      escola_id: $('#nome_da_escola').val(),
+>>>>>>> 0e8546bc56e4d53724e746addf26dea24183e6dd
       id: $('#id').val(),
       title: $('#title').val(),
       description: $('#description').val(),
-      nome_da_escola: $('#nome_da_escola').val(),
       color: $('#color').val(),
       start: $('#start').val(),
       end: $('#end').val()
@@ -146,12 +162,16 @@ document.addEventListener('DOMContentLoaded', function() {
     e.preventDefault();
   
     let dados = {
+<<<<<<< HEAD
 
       usuario_id: $('#usuario_id').val(),
+=======
+      usuario_id: $('#usuario_id').val(),
+      escola_id: $('#nome_da_escola').val(),
+>>>>>>> 0e8546bc56e4d53724e746addf26dea24183e6dd
       id: $('#id').val(),
       title: $('#title').val(),
       description: $('#description').val(),
-      nome_da_escola: $('#nome_da_escola').val(),
       color: $('#color').val(),
       start: $('#start').val(),
       end: $('#end').val(),
@@ -165,12 +185,23 @@ document.addEventListener('DOMContentLoaded', function() {
         url: "/load-update/"+dados.id,
         dataType: 'json',
         data: dados,
-        success: function(msg) {
-          alert("Atualizado com sucesso: "+dados.nome_da_escola);
-          calendar.refetchEvents();
-        },
-        error: function(error) {
-          alert("A um problema na atualização "+error);
+        success: function(result) {
+  
+          if (result.errors){
+
+            alert("A um problema na atualização "+result.errors);
+            $.each(result.errors, function(key, value) {
+
+              $('.alert-danger').show();
+              $('.alert-danger').append('<li>' + value + '</li>');
+
+            });
+          } else{
+            
+            alert("Atualizado com sucesso!!!!");
+            calendar.refetchEvents();
+
+          }
         }
       });
   });
@@ -189,11 +220,15 @@ document.addEventListener('DOMContentLoaded', function() {
         dataType: 'json',
         data: dados,
         success: function(msg) {
-          alert("Excluido com sucesso: "+dados.nome_da_escola);
+
+          alert("Excluido com sucesso!!!");
           calendar.refetchEvents();
+
         },
         error: function(error) {
+          
           alert("A um problema na exclusão !!! "+error);
+          
         }
       });
   });
@@ -207,6 +242,30 @@ document.addEventListener('DOMContentLoaded', function() {
     $('#color').val('#3788D8');
 
   }
+
+  $('#btnPDF').click(function(e){
+    e.preventDefault();
+
+    let dados = {
+      id: $('#id').val(),
+      _token: $('#token').val()
+    };
+    
+    $.ajax({
+      type: 'GET',
+      url: '/gerarPDF/'+ dados.id,
+      dataType: 'json',
+      data: dados,
+      success: function(url){
+        window.open("http://localhost:8000/gerarPDF/"+dados.id,"_blank");
+        calendar.refetchEvents();
+      },
+      error: function(error){
+        window.open("http://localhost:8000/gerarPDF/"+dados.id,"_blank");
+        calendar.refetchEvents();
+      }
+    });
+  });
 
 });
 

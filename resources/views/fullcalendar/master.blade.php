@@ -74,6 +74,10 @@
           <div class="alert alert-danger" style="display:none"></div>
           <form method="" action="" enctype="multipart/form-data">
           <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+<<<<<<< HEAD
+=======
+          <input type="hidden" name="escola_id" id="escola_id">
+>>>>>>> 0e8546bc56e4d53724e746addf26dea24183e6dd
           <input type="hidden" name="id" id="id">
             <div class="form-group">
               <label for="">Titulo</label>
@@ -85,9 +89,9 @@
               <label for="">ESCOLAS:</label>
               <select class="form-control" name="nome_da_escola" id="nome_da_escola" required>
                 <option selected>Escolher...</option>
-                <option value="E. M. Padre Eddie Bernades">E. M. Padre Eddie Bernades</option>
-                <option value="E. M. Frei Eugênio">E. M. Frei Eugênio</option>
-                <option value="CEMEI Maria Eduarda Farneze">CEMEI Maria Eduarda Farneze</option>
+                @foreach ($escolas as $escola)
+                <option value="{{$escola->id}}" id="escola">{{$escola->nome_da_escola}}</option>
+                @endforeach
               </select>
             </div>
             <!-- Descrição do transporte -->
@@ -124,6 +128,7 @@
           <button type="button" class="btn btn-warning" data-dismiss="modal" id="btnAlterar">Alterar</button>
           <button type="button" class="btn btn-danger" data-dismiss="modal" id="btnExcluir">Excluir</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-info" data-dismiss="modal" id="btnPDF">Gerar PDF</button>
         </div>
       </div>
     </div>

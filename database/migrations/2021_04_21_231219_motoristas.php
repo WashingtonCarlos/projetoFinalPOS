@@ -24,8 +24,11 @@ class Motoristas extends Migration
             $table->string('estado');
             $table->string('telefone');
             $table->timestamps();
+
         });
     }
+    
+    
 
     /**
      * Reverse the migrations.

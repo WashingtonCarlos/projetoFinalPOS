@@ -139,7 +139,7 @@
                     <input class="form-control" type="text" name="telefone" value="{{$dados->telefone}}" required>
                 </div>
             </div>
-            <div>
+            <div class="form-group col-lg-12" style="text-align: right;">
                 <button type="submit" class="btn btn-primary col-md-4">Atualizar</button>
             </div>
         </form>

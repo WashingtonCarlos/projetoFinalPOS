@@ -28,11 +28,32 @@ Route::get('/detalhe', [UserController::class, 'mostrar'])->middleware('auth');
 Route::get('/editar/{id}',[UserController::class, 'editar'])->name('editar')->middleware('auth');
 Route::post('/users/{id}',[UserController::class, 'atualizar'])->middleware('auth');
 Route::post('/upsenhaADM/{id}',[LoginController::class, 'updateSenhaADM'])->middleware('auth');
-Auth::routes();
+//Tela do Administrativo da escola
+Route::post('/registrarEscola',[UserController::class,'registroEscola'])->middleware('auth');
+Route::get('/escolas', [UserController::class, 'listaEscola'])->middleware('auth');
+Route::get('/detalheEscola{id}', [UserController::class, 'mostrarEscola'])->name('detalheEscola')->middleware('auth');
+Route::get('/editarEscola/{id}',[UserController::class, 'editarEscola'])->name('editarEscola')->middleware('auth');
+Route::get('/deletarEscola/{id}',[UserController::class,'deletarEscola'])->name('deletarEscola')->middleware('auth');
+Route::post('/schools/{id}',[UserController::class, 'atualizarEscola'])->middleware('auth');
+//Tela do Administrativo de veiculos
+Route::post('/registrarVeiculo',[UserController::class,'registroVeiculo']);
+Route::get('/veiculos', [UserController::class, 'listaVeiculo'])->middleware('auth');
+Route::get('/detalheVeiculo', [UserController::class, 'mostrarVeiculo'])->middleware('auth');
+Route::get('/editarVeiculo/{id}',[UserController::class, 'editarVeiculo'])->name('editarVeiculos')->middleware('auth');
+Route::get('/deletarVeiculo/{id}',[UserController::class,'deletarVeiculo'])->middleware('auth');
+Route::post('/car/{id}',[UserController::class, 'atualizarVeiculo'])->middleware('auth');
+//Tela de Cadastro de Escola 
+Route::get('/cadastroEscola', function(){
+    return view('cad_escola');
+})->name('cadEscola')->middleware('auth');
+//Tela de Cadastro de Veiculos
+Route::get('/cadastroVeiculo', function(){
+    return view('cad_car');
+})->name('cadCar')->middleware('auth');
 //Tela de Cadastro do Usuario 
  Route::get('/cadastro', function(){
      return view('cadastro');
- })->name('cad_usu')->middleware('auth');
+ })->name('cad_usu');
  //Tela de Alterar Senha 
  Route::get('/senha/{id}',[UserController::class,'mostrarSenha'])->name('senha')->middleware('auth');
  //Tela de Cadastro do Motorista
@@ -53,16 +74,24 @@ Route::get('/busca/{id}',[UserController::class,'mostrar'])->name('busca')->midd
 Route::get('/deletar/{id}',[UserController::class,'deletar'])->middleware('auth');
 Route::post('/registrar',[LoginController::class,'registro']);
 //Tela do Calendario 
-Route::get('/usuario',[FullCalendarController::class,'index'])->name('usuario');
+Route::get('/usuario',[FullCalendarController::class,'index'])->name('usuario')->middleware('auth');
 //Eventos do calendario
+<<<<<<< HEAD
 Route::get('/load-events/{id}',[EventController::class,'loadEvents']);
 Route::post('/load-update/{id}',[EventController::class,'update']);
 Route::post('usuario/armazena',[EventController::class,'store']);
 Route::delete('/excluir/{id}',[EventController::class,'deletar']);
+=======
+Route::get('/load-events/{id}',[EventController::class,'loadEvents'])->middleware('auth');
+Route::post('/load-update/{id}',[EventController::class,'update'])->middleware('auth');
+Route::post('usuario/armazena',[EventController::class,'store'])->middleware('auth');
+Route::delete('/excluir/{id}',[EventController::class,'deletar'])->middleware('auth');
+>>>>>>> 0e8546bc56e4d53724e746addf26dea24183e6dd
 //sair do sistema
 Route::get('/logout',[LoginController::class,'logout']);
 //verificar se o CPF já exite no banco de dados
 Route::post('/verify/cpf', [UserController::class,'perfil']);
+<<<<<<< HEAD
 //Botão de busca para os funcionanrios cadastrados
 Route::any('funcionarios/search',[UserController::class,'search'])->name('funcionarios.search');
 Route::any('motorista/search',[UserController::class,'search2'])->name('motorista.search');
@@ -71,5 +100,27 @@ Route::any('motorista/search',[UserController::class,'search2'])->name('motorist
 Route::get('/gerarPDF1',[EventController::class,'pdfCreate1'])->name('pdfs');
 
 //Auth::routes();
+=======
+//Rotas de busca
+Route::any('funcionarios/search',[UserController::class,'search'])->name('funcionarios.search')->middleware('auth');
+Route::any('motorista/search',[UserController::class,'search2'])->name('motorista.search')->middleware('auth');
+Route::any('escolas/search',[UserController::class,'search3'])->name('escolas.search')->middleware('auth');
+Route::any('veiculos/search',[UserController::class,'search4'])->name('veiculos.search')->middleware('auth');
+//gerar arquivo PDF
+Route::get('/gerarPDF/{id}',[EventController::class,'pdfCreate']);
+Route::get('/gerarPDF1',[EventController::class,'pdfCreate1']);
+//login social com facebook
+Route::get('auth/facebook', [SocialController::class, 'facebookRedirect']);
+Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook']);
+Route::get('/acessoSocial',[LoginController::class,'LoginUsuario'])->name('loginSocial');
+Route::post('/registrarSocial',[LoginController::class,'registroSocial'])->name('cadastrasocial');
+
+Auth::routes();
+//POLITICA DE PRIVACIDADE
+Route::get('/privacidade', function () {
+    return view('privacidade.politica');
+});
+
+>>>>>>> 0e8546bc56e4d53724e746addf26dea24183e6dd
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

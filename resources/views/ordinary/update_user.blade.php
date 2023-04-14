@@ -55,7 +55,7 @@
                     <select name="estado" class="form-control" required>
                         <option selected>Escolher...</option>
                         <option value="Acre" @if ($dados->estado ==='Acre')
-                            selected
+                           selected
                         @endif >AC - Acre</option>
                         <option value="Alagoas" @if ($dados->estado ==='Alagoas')
                             selected
@@ -148,7 +148,7 @@
                     <input class="form-control" type="text" name="telefone" value="{{$dados->telefone}}" require>
                 </div>
             </div>
-            <div>
+            <div class="form-group col-lg-12" style="text-align: right;">
                 <button type="submit" class="btn btn-primary col-md-4">Salvar</button>
             </div>
         </form>

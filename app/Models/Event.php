@@ -10,7 +10,7 @@ class Event extends Model
 {
     use HasFactory;
 
-    public $table = "events";
+    protected $table = "events";
 
     static $rules = [
         'title' => 'required',
@@ -18,18 +18,29 @@ class Event extends Model
         'end' => 'required',
         'color' => 'required',
         'description' => 'required',
+<<<<<<< HEAD
         'nome_da_escola' => 'required',
         'usuario_id' => 'required',
     ];
 
     protected $fillable = ['title','start','end','color','description','nome_da_escola','usuario_id'];
+=======
+        'usuario_id' => 'required',
+    ];
+
+    protected $fillable = ['title','start','end','color','description','usuario_id','escola_id','motorista_id'];
+>>>>>>> 0e8546bc56e4d53724e746addf26dea24183e6dd
 
     public function usuario(){
-        return $this->hasMany(Usuario::class);
+        return $this->belongsTo(Usuario::class, 'usuario_id', 'id');
     }
 
     public function motorista(){
-        return $this->hasMany(Motorista::class);
+        return $this->belongsTo(Motorista::class,'motorista_id','id');
+    }
+
+    public function escolas(){
+        return $this->belongsTo(Escola::class, 'escola_id','id');
     }
 
  //   public function getStartAttribute($value){
