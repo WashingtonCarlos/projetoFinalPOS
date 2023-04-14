@@ -23,7 +23,7 @@ Route::get('/', function () {
     return view('login');
 })->name('acessar');
 //Tela do Administrativo
-Route::get('/funcionarios', [UserController::class, 'lista']);
+Route::get('/funcionarios', [UserController::class, 'lista'])->middleware('auth');
 Route::get('/detalhe', [UserController::class, 'mostrar'])->middleware('auth');
 Route::get('/editar/{id}',[UserController::class, 'editar'])->name('editar')->middleware('auth');
 Route::post('/users/{id}',[UserController::class, 'atualizar'])->middleware('auth');
@@ -55,7 +55,7 @@ Route::post('/registrar',[LoginController::class,'registro']);
 //Tela do Calendario 
 Route::get('/usuario',[FullCalendarController::class,'index'])->name('usuario');
 //Eventos do calendario
-Route::get('/load-events',[EventController::class,'loadEvents']);
+Route::get('/load-events/{id}',[EventController::class,'loadEvents']);
 Route::post('/load-update/{id}',[EventController::class,'update']);
 Route::post('usuario/armazena',[EventController::class,'store']);
 Route::delete('/excluir/{id}',[EventController::class,'deletar']);
@@ -63,11 +63,12 @@ Route::delete('/excluir/{id}',[EventController::class,'deletar']);
 Route::get('/logout',[LoginController::class,'logout']);
 //verificar se o CPF já exite no banco de dados
 Route::post('/verify/cpf', [UserController::class,'perfil']);
-
-
-
+//Botão de busca para os funcionanrios cadastrados
 Route::any('funcionarios/search',[UserController::class,'search'])->name('funcionarios.search');
 Route::any('motorista/search',[UserController::class,'search2'])->name('motorista.search');
+//gerar arquivo PDF
+//Route::get('/gerarPDF/{id}',[EventController::class,'pdfCreate']);
+Route::get('/gerarPDF1',[EventController::class,'pdfCreate1'])->name('pdfs');
 
 //Auth::routes();
 

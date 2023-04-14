@@ -48,6 +48,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('cadMoto')}}">Cadastro de motorista</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('pdfs')}}">Veiculos solicitados</a>
+                    </li>
                     <li class="nav-item disabled">
                         <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{auth()->user()->nome}}

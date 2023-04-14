@@ -45,6 +45,7 @@
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;{{auth()->user()->nome}}</a></li>
+        <input type="hidden" name="usuario_id" id="usuario_id" value="{{auth()->user()->id}}">
         <li><a href="{{url('/logout')}}"><span class="glyphicon glyphicon-log-in"></span>&nbsp; Sair</a></li>
         <li><a href="{{url('senha',[auth()->user()->id])}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp; Alterar senha</a></li>
       </ul>
@@ -64,7 +65,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">{{auth()->user()->nome}} - Secretario Escolar</h5>
+          <h5 class="modal-title">{{auth()->user()->nome}} - {{auth()->user()->id}} - Secretario Escolar</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -73,7 +74,7 @@
           <div class="alert alert-danger" style="display:none"></div>
           <form method="" action="" enctype="multipart/form-data">
           <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-          <input type="hidden" name="idUsu" id="id" value="{{auth()->user()->id}}">
+          <input type="hidden" name="id" id="id">
             <div class="form-group">
               <label for="">Titulo</label>
               <input type="text" class="form-control" name="title" id="title" aria-describedby="helpId" required autofocus>
